@@ -1,0 +1,35 @@
+{
+  "Hostname": "concourse-worker",
+  "Domainname": "",
+  "User": "",
+  "AttachStdin": false,
+  "AttachStdout": false,
+  "AttachStderr": false,
+  "Tty": false,
+  "OpenStdin": false,
+  "StdinOnce": false,
+  "Env": [
+    "CONCOURSE_CONTAINERD_ALLOW_HOST_ACCESS=true",
+    "CONCOURSE_CONTAINERD_DNS_SERVER=8.8.8.8",
+    "CONCOURSE_RUNTIME=containerd",
+    "CONCOURSE_TAG=runnertest783",
+    "CONCOURSE_TSA_PUBLIC_KEY=/concourse-keys/tsa_host_key.pub",
+    "AWS_EXECUTION_ENV=AWS_ECS_EC2",
+    "CONCOURSE_TSA_HOST=auth.cloudyfme.de:2222",
+    "CONCOURSE_TSA_WORKER_PRIVATE_KEY=/concourse-keys/worker_key"
+  ],
+  "Cmd": [
+    "-c",
+    "export CONCOURSE_NAME=\"$(dd if=/dev/urandom bs=1 count=32 2>/dev/null | base64 | sed s/[^[:alnum:]]//g)\"; dumb-init /usr/local/bin/entrypoint.sh worker"
+  ],
+  "Image": "concourse/concourse:7.8.3",
+  "Volumes": null,
+  "WorkingDir": "",
+  "Entrypoint": [
+    "bash"
+  ],
+  "OnBuild": null,
+  "Labels": {
+    "Name": "concourse-worker"
+  }
+}

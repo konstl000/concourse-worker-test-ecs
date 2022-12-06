@@ -1,0 +1,18 @@
+resources:
+  - name: repo
+    source:
+      branch: main
+      uri: https://github.com/konstl000/concourse-worker-test-ecs.git
+    type: git
+
+jobs:
+  - name: proof-of-concept
+    plan:
+      - get: repo
+        tags:
+          - runnertest
+      - file: repo/ci/task.yml
+        tags:
+          - runnertest
+        params:
+          FOO: bar
