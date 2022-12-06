@@ -16,3 +16,16 @@ jobs:
           - runnertest
         params:
           FOO: bar
+        task: test
+  - name: proof-of-concept783
+    plan:
+      - get: repo
+        tags:
+          - runnertest783
+      - file: repo/ci/task.yml
+        tags:
+          - runnertest783
+        params:
+          FOO: bar
+        task: test
+
